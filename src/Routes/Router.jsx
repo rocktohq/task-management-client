@@ -11,6 +11,8 @@ import Dashboard from "../layout/Dashboard";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import TodoList from "../pages/Dashboard/TodoList/TodoList";
 import WhyUs from "../pages/WhyUs/WhyUs";
+import AddTodo from "../pages/Dashboard/AddTodo/AddTodo";
+import UpdateTodo from "../pages/Dashboard/UpdateTodo/UpdateTodo";
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +61,14 @@ export const router = createBrowserRouter([
       {
         path: "todolist",
         element: <TodoList />,
+      },
+      {
+        path: "addtodo",
+        element: <AddTodo />,
+      },
+      {
+        path: "updatetodo/:id",
+        element: <UpdateTodo />,
       },
     ],
   },

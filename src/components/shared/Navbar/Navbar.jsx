@@ -45,6 +45,14 @@ const Navbar = () => {
       <li>
         <NavLink
           className="hover:text-primary hover:underline duration-300"
+          to="/whyus"
+        >
+          Why Us
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className="hover:text-primary hover:underline duration-300"
           to="/contact"
         >
           Contact

@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import HeroSection from "../../components/Home/HeroSection/HeroSection";
+import Reviews from "../../components/Home/Reviews/Reviews";
 
 const Home = () => {
   return (
@@ -11,7 +12,8 @@ const Home = () => {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* TODO: User Reviews */}
+      {/* User Reviews */}
+      <Reviews />
     </>
   );
 };
