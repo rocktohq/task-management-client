@@ -36,12 +36,19 @@ const Task = ({ task, refetch }) => {
           `/tasks/${id}?email=${user?.email}`
         );
         if (res.data.deletedCount > 0) {
-          toast.success("Todo deleted successfully");
+          toast.success("Todo deleted successfully", { icon: "💀" });
           refetch();
         }
       }
     });
   };
+
+  if (
+    task.status !== "completed" &&
+    Date.now() + 24 * 3600000 >= task.deadline
+  ) {
+    toast.error(`Task ${task.title} has 1 day left!`);
+  }
 
   return (
     <div

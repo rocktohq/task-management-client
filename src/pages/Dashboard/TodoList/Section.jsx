@@ -3,13 +3,8 @@ import Task from "./Task";
 import { useDrop } from "react-dnd";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
-const Section = ({
-  status,
-  toDo,
-  onGoing,
-  completed,
-  refetch,
-}) => {
+import toast from "react-hot-toast";
+const Section = ({ status, toDo, onGoing, completed, refetch }) => {
   let text = "To Do";
   let bg = "bg-slate-500";
   let tasksToMap = toDo;
@@ -43,6 +38,7 @@ const Section = ({
 
     if (res?.data?.modifiedCount > 0) {
       refetch();
+      toast.success(`Task moved to ${status}`);
     }
   };
 

@@ -12,21 +12,26 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 const TodoList = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const [tasks, setTasks] = useState([]);
   const [toDo, setToDo] = useState([]);
   const [onGoing, setOnGoing] = useState([]);
-  const [completed, setCOmpleted] = useState([]);
+  const [completed, setCompleted] = useState([]);
   const statuses = ["to-do", "ongoing", "completed"];
 
-  const { isPending, refetch } = useQuery({
+  const {
+    data: todos,
+    isPending,
+    refetch,
+  } = useQuery({
     queryKey: ["todos"],
     queryFn: async () => {
       const res = await axiosSecure(`/tasks?email=${user?.email}`);
       setToDo(res.data.tasks.filter((todo) => todo?.status === "to-do"));
       setOnGoing(res.data.tasks.filter((todo) => todo?.status === "ongoing"));
-      setCOmpleted(
+      setCompleted(
         res.data.tasks.filter((todo) => todo?.status === "completed")
       );
+
+      return res.data.tasksCount;
     },
   });
 
@@ -38,20 +43,26 @@ const TodoList = () => {
         <title>All Todos</title>
       </Helmet>
       <Title heading="All Todos" center big />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
-        {statuses.map((status, idx) => (
-          <Section
-            key={idx}
-            status={status}
-            tasks={tasks}
-            setTasks={setTasks}
-            toDo={toDo}
-            onGoing={onGoing}
-            completed={completed}
-            refetch={refetch}
-          />
-        ))}
-      </div>
+      {todos > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+          {statuses.map((status, idx) => (
+            <Section
+              key={idx}
+              status={status}
+              toDo={toDo}
+              onGoing={onGoing}
+              completed={completed}
+              refetch={refetch}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="mt-10">
+          <h2 className="text-center text-xl font-bold text-neutral-500">
+            No To-do Found!
+          </h2>
+        </div>
+      )}
     </DndProvider>
   );
 };

@@ -18,7 +18,7 @@ const DashboardHome = () => {
   });
 
   const options = {
-    title: "Publisher Statistics",
+    title: "Todos Statistics",
   };
 
   if (isPending) return <Loader />;
