@@ -68,11 +68,13 @@ const Task = ({ task, refetch }) => {
       </div>
 
       <div className="flex flex-col gap-1 justify-center items-center">
-        <Link to={`/dashboard/updatetodo/${task._id}`}>
-          <button className="">
-            <FaPencilAlt className="text-primary" size={18} />
-          </button>
-        </Link>
+        {task?.status !== "completed" && (
+          <Link to={`/dashboard/updatetodo/${task._id}`}>
+            <button className="">
+              <FaPencilAlt className="text-primary" size={18} />
+            </button>
+          </Link>
+        )}
         <button onClick={() => handleDelete(task._id)} className="">
           <FaTrashAlt className="text-error" size={18} />
         </button>
