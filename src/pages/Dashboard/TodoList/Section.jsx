@@ -43,7 +43,7 @@ const Section = ({ status, toDo, onGoing, completed, refetch }) => {
   };
 
   return (
-    <div ref={drop} className={`${isOver ? "bg-gray-50" : ""}`}>
+    <div ref={drop} className={`${isOver ? "bg-gray-100" : ""}`}>
       <h2
         className={`py-2 text-center text-2xl font-bold ${bg} text-white px-5 w-full uppercase mb-5 rounded-md`}
       >
