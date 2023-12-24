@@ -15,7 +15,7 @@ const Dashboard = () => {
           </label>{" "}
           <span className="lg:hidden">Dashboard</span>
         </div>
-        <div className="mt-5">
+        <div className="mt-5 px-3">
           <Outlet />
         </div>
       </div>
